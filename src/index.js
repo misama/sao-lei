@@ -70,7 +70,6 @@ class Game extends React.Component {
     }
 
     inProgress() {
-        console.log(this.state.status);
         if(this.state.status === 'inProgress') return;
         this.setState({
             status: 'inProgress',
