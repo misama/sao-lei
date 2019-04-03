@@ -1,0 +1,54 @@
+.grid {
+    display: block;
+    border-style: outset;
+    height: 25px;
+    width: 25px;
+    float: left;
+    background: lightgray;
+}
+.open {
+    background: white;
+}
+.grid0 {
+    background: white;
+}
+.grid1 {
+    color: blue;
+}
+.grid2 {
+    color: green;
+}
+.grid3 {
+    color: red;
+}
+.grid4 {
+    color: darkblue;
+}
+.grid5 {
+    color: lightskyblue;
+}
+.grid6 {
+    color: lightseagreen;
+}
+.grid7 {
+    color: brown;
+}
+.grid8 {
+    color: blueviolet;
+}
+.grid9 {
+    background-image: url('../assets/normallei.jpg');
+    background-size: cover;
+}
+.gridmarked {
+    background-image: url('../assets/flag.jpg');
+    background-size: cover;
+}
+.gridtrigger {
+    background-image: url('../assets/redlei.jpg');
+    background-size: cover;
+}
+.row {
+    margin: 0;
+    clear: both;
+}
