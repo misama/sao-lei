@@ -12,7 +12,7 @@ class SingleGrid extends React.Component {
         this.handleRightClick = this.handleRightClick.bind(this);
     }
 
-    handleClick(e) {
+    handleClick() {
         if(this.state.status !== 'default'){
             return;
         }
@@ -29,6 +29,7 @@ class SingleGrid extends React.Component {
             this.props.isGridZero(this.props.position, this.props.totalRows, this.props.totalColumns);
         }
     }
+
     handleRightClick(e) {
         e.stopPropagation();
         e.preventDefault();
@@ -40,9 +41,9 @@ class SingleGrid extends React.Component {
         });
     }
     render () {
-        const { isGameFail, value, opened } = this.props;
+        const { value, opened, gameStatus } = this.props;
         let currentStatue = '';
-        if (!isGameFail) {
+        if (gameStatus !== 'fail') {
             switch (this.state.status) {
                 case 'open':
                     currentStatue = value;
@@ -65,7 +66,7 @@ class SingleGrid extends React.Component {
                     currentStatue = value;
             }
         }
-        if (opened){
+        if (gameStatus !== 'newGame' && opened){
             switch (this.state.status){
                 case 'trigger':
                     currentStatue = 'trigger';

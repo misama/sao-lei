@@ -8,22 +8,22 @@ class GameBoard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            fail: false,
-            opened: []
+            opened: [],
         };
         this.checkStatus = this.checkStatus.bind(this);
         this.handleZero = this.handleZero.bind(this);
+        this.startGame = this.startGame.bind(this);
     }
 
     checkStatus(status) {
-        this.setState({
-            fail: status
-        });
         if (status){
-            this.props.gameFail();
+            this.props.gameFail(status);
         }
     };
 
+    startGame () {
+            this.props.startGame();
+    }
 
     handleZero(position, totalRows, totalColumns){
         const checked = [];
@@ -50,29 +50,29 @@ class GameBoard extends React.Component {
             }else{
                 return;
             }
-        }
-        updateZero(this.state.opened, position.rowNumber, position.gridNumber, totalRows, totalColumns);
+        };
+        updateZero(this.state.opened, position.rowNumber, position.gridNumber);
         this.setState({
             opened: this.state.opened
         });
     }
 
     render () {
-        const { game, totalRows, totalColumns } = this.props;
+        const { game, totalRows, totalColumns, gameStatus } = this.props;
         return (
-            <ul>
+            <ul onClick={ this.startGame }>
                 {game.map((row, rowNumber)=>
                     (<p className="row" key={ rowNumber }>{row.map(
                         (grid, gridNumber) =>
                             <SingleGrid
+                                gameStatus={ gameStatus }
                                 key={ gridNumber }
                                 totalRows = { totalRows }
                                 totalColumns = { totalColumns }
                                 position={{rowNumber, gridNumber}}
-                                isGameFail={this.state.fail}
                                 checkGameStatus={this.checkStatus}
-                                isGridZero = {this.handleZero}
-                                opened={this.state.opened.indexOf(rowNumber+'-'+gridNumber)>=0}
+                                isGridZero = { this.handleZero }
+                                opened={ this.state.opened.indexOf(rowNumber+'-'+gridNumber)>=0}
                                 value={grid}>
                             </SingleGrid>
                     )}</p>)
