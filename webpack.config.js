@@ -13,12 +13,12 @@ module.exports = {
     devServer: {
         port: 8089,
         contentBase: [
-            path.join(__dirname, 'dist/'),
+            path.join(__dirname, 'docs/'),
         ],
     },
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist/')
+        path: path.resolve(__dirname, 'docs/')
     },
     module: {
         rules: [{
