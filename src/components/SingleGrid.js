@@ -15,7 +15,6 @@ class SingleGrid extends React.Component {
     }
 
     handleClick() {
-        console.log('33333333', this.props.gameStatus)
         if(this.props.gameStatus === 'fail'){
             return;
         }
@@ -50,7 +49,7 @@ class SingleGrid extends React.Component {
     }
 
     handleTouchEnd(){
-        if(new Date().getTime() - this.pressTime > 1500){
+        if(new Date().getTime() - this.pressTime > 800){
             if (this.state.status === 'open' || this.props.opened) {
                 return;
             }
