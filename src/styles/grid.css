@@ -49,6 +49,10 @@
     background-image: url('../assets/redlei.jpg');
     background-size: cover;
 }
+.gridwrong {
+    background-image: url('../assets/wrong.jpg');
+    background-size: cover;
+}
 .row {
     margin: 0;
     clear: both;

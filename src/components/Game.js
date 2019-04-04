@@ -82,10 +82,10 @@ class Game extends React.Component {
                                handleZero={this.handleZero}/>
                 </div>
                 <div className={"buttons"}>
+                    <Button content="New Game" color="button"  onClick={this.reStart}/>
                     <Button content="Easy" color="button" onClick={this.setEasyGame}/>
                     <Button content="Mediate" color="button" onClick={this.setMediateGame}/>
                     <Button content="Hard" color="button" onClick={this.setHardGame}/>
-                    <Button content="New Game" color="button"  onClick={this.reStart}/>
                 </div>
             </React.Fragment>
         )

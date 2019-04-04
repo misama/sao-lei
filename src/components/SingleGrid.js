@@ -7,7 +7,7 @@ import '../styles/grid.css'
 class SingleGrid extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {status: 'default', pressTime:0};
+        this.state = {status: 'default', opened: false};
         this.handleClick = this.handleClick.bind(this);
         this.handleRightClick = this.handleRightClick.bind(this);
         this.handleTouchEnd = this.handleTouchEnd.bind(this);
@@ -19,11 +19,23 @@ class SingleGrid extends React.Component {
             return;
         }
 
+        if(this.state.status === 'marked'){
+            this.setState({
+                status: 'question'
+            });
+        }
+        if(this.state.status === 'question'){
+            this.setState({
+                status: 'marked'
+            });
+        }
+
         if(this.state.status !== 'default'){
             return;
         }
         if(this.props.value !== 9 && this.props.value !== 0) {
             this.setState({
+                opened: true,
                 status: 'open'
             });
         } else if (this.props.value === 9){
@@ -39,12 +51,21 @@ class SingleGrid extends React.Component {
     handleRightClick(e) {
         e.stopPropagation();
         e.preventDefault();
-        if(this.pressTime) {return;}
+        if(this.pressTime || this.props.gameStatus === 'fail') {return;}
+
+        if(this.state.status === 'marked' || this.state.status === 'question'){
+            this.setState({
+                status: 'default',
+                keepClose: true,
+            });
+            return;
+        }
+
         if (this.state.status === 'open' || this.props.opened) {
             return;
         }
         this.setState({
-            status: this.state.status === 'marked' ? 'default' : 'marked'
+            status: 'marked'
         });
     }
 
@@ -60,8 +81,14 @@ class SingleGrid extends React.Component {
         }, '1000');
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.opened !== this.state.opened && this.state.status !== 'marked' && this.state.status !== 'question') {
+            this.setState({ opened: nextProps.opened });
+        }
+    }
+
     render () {
-        const { value, opened, gameStatus } = this.props;
+        const { value, gameStatus } = this.props;
         let currentStatue = '';
         if (gameStatus !== 'fail') {
             switch (this.state.status) {
@@ -70,6 +97,9 @@ class SingleGrid extends React.Component {
                     break;
                 case 'marked':
                     currentStatue = 'marked';
+                    break;
+                case 'question':
+                    currentStatue = '?';
                     break;
                 case 'trigger':
                     currentStatue = 'trigger';
@@ -82,11 +112,18 @@ class SingleGrid extends React.Component {
                 case 'trigger':
                     currentStatue = 'trigger';
                     break;
+                case 'marked':
+                    if(value!==9){
+                        currentStatue = 'wrong';
+                    }else{
+                        currentStatue = value;
+                    }
+                    break;
                 default:
                     currentStatue = value;
             }
         }
-        if (gameStatus !== 'newGame' && opened){
+        if (this.state.opened){
             switch (this.state.status){
                 case 'trigger':
                     currentStatue = 'trigger';
@@ -102,7 +139,7 @@ class SingleGrid extends React.Component {
             onTouchStart={this.touchStart}
             onTouchEnd={this.handleTouchEnd}
         >
-            {/[1-8]/.test(currentStatue) ? currentStatue: ''}</span>
+            {/[1-8]/.test(currentStatue) || currentStatue === 'X' ? currentStatue: ''}</span>
     }
 }
 export default SingleGrid
