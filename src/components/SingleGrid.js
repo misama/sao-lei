@@ -50,7 +50,6 @@ class SingleGrid extends React.Component {
     }
 
     handleTouchEnd(){
-        console.log('2222222', new Date().getTime() - this.pressTime)
         if(new Date().getTime() - this.pressTime > 1500){
             if (this.state.status === 'open' || this.props.opened) {
                 return;
@@ -62,7 +61,6 @@ class SingleGrid extends React.Component {
     }
 
     touchStart(){
-        console.log('44444444')
         this.pressTime = new Date().getTime();
     }
 
