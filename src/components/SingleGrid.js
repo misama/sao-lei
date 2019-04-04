@@ -1,7 +1,7 @@
 /**
  * Created by xzou2 on 11/13/18.
  */
-import React, { Component } from 'react';
+import React from 'react';
 import '../styles/grid.css'
 
 class SingleGrid extends React.Component {
@@ -37,9 +37,9 @@ class SingleGrid extends React.Component {
     }
 
     handleRightClick(e) {
-        if(this.pressTime) {return;}
         e.stopPropagation();
         e.preventDefault();
+        if(this.pressTime) {return;}
         if (this.state.status === 'open' || this.props.opened) {
             return;
         }
@@ -49,23 +49,19 @@ class SingleGrid extends React.Component {
     }
 
     handleTouchEnd(){
-        if(new Date().getTime() - this.pressTime > 800){
-            if (this.state.status === 'open' || this.props.opened) {
-                return;
-            }
-            this.setState({
-                status: this.state.status === 'marked' ? 'default' : 'marked'
-            });
-        }
+        clearTimeout(this.pressTime);
     }
 
     touchStart(){
-        this.pressTime = new Date().getTime();
+        this.pressTime  = setTimeout(()=>{
+            this.setState({
+                status: this.state.status === 'marked' ? 'default' : 'marked'
+            });
+        }, '1000');
     }
 
     render () {
         const { value, opened, gameStatus } = this.props;
-        console.log('00000000', gameStatus)
         let currentStatue = '';
         if (gameStatus !== 'fail') {
             switch (this.state.status) {
