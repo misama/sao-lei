@@ -1,17 +1,69 @@
-.gameboard {
+.gameboard8 {
     width: 75%;
     float: left;
 }
-.buttons {
+.buttons8 {
+    display: inline-block;
+    width: 20%;
+}
+.gameboard8 ul {
+    width: 288px;
+    margin: auto;
+}
+
+.gameboard14 {
+    width: 75%;
+    float: left;
+}
+.buttons14 {
     display: inline-block;
     width: 20%;
 }
 
+.gameboard14 ul {
+    width: 504px;
+    margin: auto;
+}
+
+.gameboard16 {
+    width: 75%;
+    float: left;
+}
+.buttons16 {
+    display: inline-block;
+    width: 20%;
+}
+
+.gameboard16 ul {
+    width: 576px;
+    margin: auto;
+}
+
 @media only screen and (max-width: 760px) {
-    .gameboard {
+    .gameboard8 {
+        width: 100%;
+        float: left;
+    }
+    .buttons8 {
+        display: inline-block;
         width: 100%;
     }
-    .buttons {
+
+    .gameboard14 {
+        width: 100%;
+        float: left;
+    }
+    .buttons14 {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .gameboard16 {
+        width: 100%;
+        float: left;
+    }
+    .buttons16 {
+        display: inline-block;
         width: 100%;
     }
 }

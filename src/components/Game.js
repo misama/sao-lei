@@ -72,7 +72,7 @@ class Game extends React.Component {
     render () {
         return (
             <React.Fragment>
-                <div className={"gameboard"}>
+                <div className={`gameboard${this.state.totalColumns}`}>
                     <GameBoard key={this.state.gameIndex}
                                gameFail={this.gameFail}
                                totalRows={this.state.totalRows}
@@ -81,7 +81,7 @@ class Game extends React.Component {
                                gameStatus={this.state.status}
                                handleZero={this.handleZero}/>
                 </div>
-                <div className={"buttons"}>
+                <div className={`buttons${this.state.totalColumns}`}>
                     <Button content="New Game" color="button"  onClick={this.reStart}/>
                     <Button content="Easy" color="button" onClick={this.setEasyGame}/>
                     <Button content="Mediate" color="button" onClick={this.setMediateGame}/>
