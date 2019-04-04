@@ -1,7 +1,7 @@
 /**
  * Created by xzou2 on 11/15/18.
  */
-import React, { Component } from 'react';
+import React from 'react';
 import SingleGrid from './SingleGrid';
 import '../styles/grid.css'
 class GameBoard extends React.Component {
@@ -12,7 +12,6 @@ class GameBoard extends React.Component {
         };
         this.checkStatus = this.checkStatus.bind(this);
         this.handleZero = this.handleZero.bind(this);
-        this.startGame = this.startGame.bind(this);
     }
 
     checkStatus(status) {
@@ -20,10 +19,6 @@ class GameBoard extends React.Component {
             this.props.gameFail(status);
         }
     };
-
-    startGame () {
-            this.props.startGame();
-    }
 
     handleZero(position, totalRows, totalColumns){
         const checked = [];
@@ -60,7 +55,7 @@ class GameBoard extends React.Component {
     render () {
         const { game, totalRows, totalColumns, gameStatus } = this.props;
         return (
-            <ul onClick={ this.startGame }>
+            <ul>
                 {game.map((row, rowNumber)=>
                     (<p className="row" key={ rowNumber }>{row.map(
                         (grid, gridNumber) =>
