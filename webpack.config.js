@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     devtool: 'inline-source-map',
@@ -13,16 +12,16 @@ module.exports = {
     devServer: {
         port: 8089,
         contentBase: [
-            path.join(__dirname, 'docs/'),
+            path.join(__dirname, 'site/'),
         ],
     },
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'docs/')
+        path: path.resolve(__dirname, 'site/')
     },
     module: {
         rules: [{
-            test: /\.js$/, // include .js files
+            test: /\.(js|jsx)$/, // include .js files
             // enforce: "pre", // preload the jshint loader
             exclude: /node_modules/, // exclude any and all files in the node_modules folder
             use:
@@ -50,16 +49,14 @@ module.exports = {
         ]
 
     },
+    resolve: {
+        modules: ['node_modules'],
+        extensions: ['.js', '.jsx'],
+    },
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'src/index.html'
         }),
-        new CopyWebpackPlugin([
-            { from: 'src/assets/*.png', to: 'images',
-                transformPath (targetPath, absolutePath) {
-                return `${targetPath.substring(15)}`;
-            }},
-        ])
     ],
 };

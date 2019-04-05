@@ -15,7 +15,7 @@ class SingleGrid extends React.Component {
     }
 
     handleClick() {
-        if(this.props.gameStatus === 'fail'){
+        if(this.props.gameStatus !== 'inProgress'){
             return;
         }
 
@@ -38,11 +38,12 @@ class SingleGrid extends React.Component {
                 opened: true,
                 status: 'open'
             });
+            this.props.openGrid(this.props.position);
         } else if (this.props.value === 9){
             this.setState({
                 status: 'trigger'
             });
-            this.props.checkGameStatus(true);
+            this.props.gameFail(true);
         } else {
             this.props.isGridZero(this.props.position, this.props.totalRows, this.props.totalColumns);
         }
@@ -82,8 +83,8 @@ class SingleGrid extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.opened !== this.state.opened && this.state.status !== 'marked' && this.state.status !== 'question') {
-            this.setState({ opened: nextProps.opened });
+        if (nextProps.opened === true && this.state.status !== 'marked' && this.state.status !== 'question') {
+            this.setState({ status: 'open' });
         }
     }
 
@@ -118,15 +119,6 @@ class SingleGrid extends React.Component {
                     }else{
                         currentStatue = value;
                     }
-                    break;
-                default:
-                    currentStatue = value;
-            }
-        }
-        if (this.state.opened){
-            switch (this.state.status){
-                case 'trigger':
-                    currentStatue = 'trigger';
                     break;
                 default:
                     currentStatue = value;

@@ -1,4 +1,22 @@
+ul {
+    padding: 0;
+    margin: auto;
+}
+.wincover {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 2;
+    cursor: pointer;
+}
 .gameboard8 {
+    display: inline-block;
+    position: relative;
     width: 75%;
     float: left;
 }
@@ -7,8 +25,8 @@
     width: 20%;
 }
 .gameboard8 ul {
+    height: 360px;
     width: 288px;
-    margin: auto;
 }
 
 .gameboard14 {
@@ -21,8 +39,8 @@
 }
 
 .gameboard14 ul {
+    height: 648px;
     width: 504px;
-    margin: auto;
 }
 
 .gameboard16 {
@@ -35,8 +53,8 @@
 }
 
 .gameboard16 ul {
+    weight: 1080px;
     width: 576px;
-    margin: auto;
 }
 
 @media only screen and (max-width: 760px) {

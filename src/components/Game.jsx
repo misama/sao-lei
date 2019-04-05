@@ -1,14 +1,12 @@
 import React from 'react';
 import GameBoard from './GameBoard';
 import Button from './Button';
-import { generateGame } from '../service/dataService';
 import '../styles/index.css';
 
 class Game extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            game:  generateGame(10, 8, 10),
             totalRows: 10,
             totalColumns: 8,
             totalLei: 10,
@@ -19,18 +17,21 @@ class Game extends React.Component {
         this.setMediateGame = this.setMediateGame.bind(this);
         this.setHardGame = this.setHardGame.bind(this);
         this.reStart = this.reStart.bind(this);
-        this.gameFail = this.gameFail.bind(this);
+        this.gameFinish = this.gameFinish.bind(this);
+        this.gameWin = this.gameWin.bind(this);
     }
 
-    gameFail() {
+    gameFinish(status) {
         this.setState({
-            status: 'fail',
+            status: status,
         });
     };
+    gameWin() {
+        alert('win');
+    }
 
     setEasyGame() {
         this.setState({
-            game: generateGame(10, 8, 10),
             totalRows: 10,
             totalColumns: 8,
             totalLei: 10,
@@ -41,7 +42,6 @@ class Game extends React.Component {
 
     setMediateGame() {
         this.setState({
-            game: generateGame(18, 14, 40),
             totalRows: 18,
             totalColumns: 14,
             totalLei: 40,
@@ -52,7 +52,6 @@ class Game extends React.Component {
 
     setHardGame() {
         this.setState({
-            game: generateGame(30, 16, 99),
             totalRows: 30,
             totalColumns: 16,
             totalLei: 99,
@@ -63,7 +62,6 @@ class Game extends React.Component {
 
     reStart() {
         this.setState({
-            game: generateGame(this.state.totalRows, this.state.totalColumns, this.state.totalLei),
             gameIndex: this.state.gameIndex + 1,
             status: 'inProgress',
         })
@@ -72,14 +70,16 @@ class Game extends React.Component {
     render () {
         return (
             <React.Fragment>
+                {this.state.status !== 'inProgress' ?
+                    <div className="wincover">
+                        <Button content="New Game" color="button"  onClick={this.reStart}/>
+                    </div> : ''}
                 <div className={`gameboard${this.state.totalColumns}`}>
                     <GameBoard key={this.state.gameIndex}
-                               gameFail={this.gameFail}
+                               gameFinish={this.gameFinish}
                                totalRows={this.state.totalRows}
                                totalColumns={this.state.totalColumns}
-                               game={this.state.game}
-                               gameStatus={this.state.status}
-                               handleZero={this.handleZero}/>
+                               totalLei={this.state.totalLei}/>
                 </div>
                 <div className={`buttons${this.state.totalColumns}`}>
                     <Button content="New Game" color="button"  onClick={this.reStart}/>
