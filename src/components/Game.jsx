@@ -18,7 +18,6 @@ class Game extends React.Component {
         this.setHardGame = this.setHardGame.bind(this);
         this.reStart = this.reStart.bind(this);
         this.gameFinish = this.gameFinish.bind(this);
-        this.gameWin = this.gameWin.bind(this);
     }
 
     gameFinish(status) {
@@ -26,9 +25,6 @@ class Game extends React.Component {
             status: status,
         });
     };
-    gameWin() {
-        alert('win');
-    }
 
     setEasyGame() {
         this.setState({
@@ -72,7 +68,10 @@ class Game extends React.Component {
             <React.Fragment>
                 {this.state.status !== 'inProgress' ?
                     <div className="wincover">
-                        <Button content="New Game" color="button"  onClick={this.reStart}/>
+                        <div className="finishedcontent">
+                            <p>YOU {this.state.status.toUpperCase()}!</p>
+                            <Button content="New Game" color="button"  onClick={this.reStart}/>
+                        </div>
                     </div> : ''}
                 <div className={`gameboard${this.state.totalColumns}`}>
                     <GameBoard key={this.state.gameIndex}

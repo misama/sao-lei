@@ -1,7 +1,7 @@
 {
   "name": "saolei",
   "version": "0.0.1",
-  "description": "a poster for lin",
+  "description": "a web-page game",
   "main": "index.js",
   "scripts": {
     "test": "",

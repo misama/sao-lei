@@ -14,6 +14,15 @@ ul {
     z-index: 2;
     cursor: pointer;
 }
+.finishedcontent {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -150px;
+    background-color: white;
+    padding: 40px;
+}
 .gameboard8 {
     display: inline-block;
     position: relative;

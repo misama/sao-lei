@@ -54,7 +54,6 @@ function updatevalues (gameMap) {
 
 function generateBooms(rowNumber, cloumnNumber, leinumber) {
     let numberOfLei = leinumber || rowNumber*cloumnNumber/4;
-    console.log(numberOfLei);
     const numberOfElement = rowNumber * cloumnNumber;
     const gameMap = [];
     const elements = [];
