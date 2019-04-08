@@ -23,17 +23,19 @@ class GameBoard extends React.Component {
     };
 
     openGrid(position) {
+        const {totalRows, totalColumns, totalLei} = this.props;
         if (this.state.opened.indexOf(`${position.rowNumber}-${position.gridNumber}`) < 0) {
             this.state.opened.push(`${position.rowNumber}-${position.gridNumber}`)
         }
-        if (this.state.opened.length === 70) {
+        if (this.state.opened.length === totalRows*totalColumns-totalLei) {
             this.setState({gameStatus: 'win'});
             this.props.gameFinish('win');
         }
     }
 
-    handleZero(position, totalRows, totalColumns){
+    handleZero(position){
         const checked = [];
+        const {totalRows, totalColumns} = this.props;
         const updateZero = (arr, rowNumber, gridNumber) => {
             if(rowNumber >= totalRows || gridNumber >= totalColumns ||
                 rowNumber <0 || gridNumber<0 ||
@@ -71,7 +73,6 @@ class GameBoard extends React.Component {
     }
 
     render () {
-        const { totalRows, totalColumns } = this.props;
         return (
             <React.Fragment>
                 <ul>
@@ -81,8 +82,6 @@ class GameBoard extends React.Component {
                                 <SingleGrid
                                     gameStatus={ this.state.gameStatus }
                                     key={ gridNumber }
-                                    totalRows = { totalRows }
-                                    totalColumns = { totalColumns }
                                     position={{rowNumber, gridNumber}}
                                     gameFail={this.gameFail}
                                     isGridZero = { this.handleZero }

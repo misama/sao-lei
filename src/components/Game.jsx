@@ -81,10 +81,10 @@ class Game extends React.Component {
                                totalLei={this.state.totalLei}/>
                 </div>
                 <div className={`buttons${this.state.totalColumns}`}>
-                    <Button content="New Game" color="button"  onClick={this.reStart}/>
-                    <Button content="Easy" color="button" onClick={this.setEasyGame}/>
-                    <Button content="Mediate" color="button" onClick={this.setMediateGame}/>
-                    <Button content="Hard" color="button" onClick={this.setHardGame}/>
+                    <Button content="New Game" color="green"  onClick={this.reStart}/>
+                    <Button content="Easy" color="green" onClick={this.setEasyGame}/>
+                    <Button content="Mediate" color="green" onClick={this.setMediateGame}/>
+                    <Button content="Hard" color="green" onClick={this.setHardGame}/>
                 </div>
             </React.Fragment>
         )

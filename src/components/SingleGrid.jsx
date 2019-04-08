@@ -45,7 +45,7 @@ class SingleGrid extends React.Component {
             });
             this.props.gameFail(true);
         } else {
-            this.props.isGridZero(this.props.position, this.props.totalRows, this.props.totalColumns);
+            this.props.isGridZero(this.props.position);
         }
     }
 
