@@ -1,6 +1,3 @@
-/**
- * Created by xzou2 on 11/13/18.
- */
 import React from 'react';
 import '../styles/grid.css'
 
