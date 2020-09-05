@@ -18,10 +18,10 @@ function countNumbers() {
 function updatevalues (gameMap) {
     const rows = gameMap.length-1;
     const colunms = gameMap[0].length-1;
-    gameMap[0][0] =countNumbers(gameMap[0][1],gameMap[1][0],gameMap[1][1]);
-    gameMap[0][colunms] =countNumbers(gameMap[0][colunms-1],gameMap[1][colunms],gameMap[1][colunms-1]);
-    gameMap[rows][0] =countNumbers(gameMap[rows][1],gameMap[rows-1][0],gameMap[rows-1][1]);
-    gameMap[rows][colunms] =countNumbers(gameMap[rows][colunms-1],gameMap[rows-1][colunms],gameMap[rows-1][colunms-1]);
+    gameMap[0][0] = gameMap[0][0]!== 9 ? countNumbers(gameMap[0][1],gameMap[1][0],gameMap[1][1]) : 9;
+    gameMap[0][colunms] = gameMap[0][colunms] !== 9 ?countNumbers(gameMap[0][colunms-1],gameMap[1][colunms],gameMap[1][colunms-1]) : 9;
+    gameMap[rows][0] = gameMap[rows][0] !==9 ? countNumbers(gameMap[rows][1],gameMap[rows-1][0],gameMap[rows-1][1]) : 9;
+    gameMap[rows][colunms] = gameMap[rows][colunms] !== 9 ? countNumbers(gameMap[rows][colunms-1],gameMap[rows-1][colunms],gameMap[rows-1][colunms-1]) : 9;
     for(let j = 1; j < gameMap[0].length-1; j ++){
         if(gameMap[0][j] !=9){
             gameMap[0][j] = countNumbers(gameMap[0][j-1],gameMap[0][j+1],gameMap[1][j-1],gameMap[1][j],gameMap[1][j+1]);
@@ -67,7 +67,6 @@ function generateBooms(rowNumber, cloumnNumber, leinumber) {
     for (let i = 0 ; i < rowNumber; i ++){
         gameMap.push(elements.slice(i*cloumnNumber, (i+1)*cloumnNumber))
     }
-
     return gameMap;
 }
 

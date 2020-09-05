@@ -1,8 +1,9 @@
 .grid {
     display: block;
     border-style: outset;
-    height: 25px;
-    width: 25px;
+    height: 30px;
+    width: 30px;
+    font-size: 18px;
     float: left;
     background: lightgray;
 }
@@ -46,6 +47,10 @@
 }
 .gridtrigger {
     background-image: url('../assets/redlei.jpg');
+    background-size: cover;
+}
+.gridwrong {
+    background-image: url('../assets/wrong.jpg');
     background-size: cover;
 }
 .row {
